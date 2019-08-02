@@ -1,19 +1,23 @@
-//加载express模块
-var express = require("express");
-//加载路由
-var a = require('./router/user');
-var bodyParser=require("body-parser");
-//创建对象
+//加载模块
+const express = require("express");
+var router=express.Router();
 var app = express();
-app.use(bodyParser.urlencoded({ extended: false })) 
-app.use('/abc',express.static("./publiv.html"))
-//监听接口
-app.listen(9000);
 
-//创建post路由
-app.post("/public", function (req, res) {
+var pas = 234;
 
-res.send(req.body.ff);
+app.listen(8080);
+
+app.use("/login.html", express.static("./login.html"))
+
+app.get("/login", function (req, res) {
+	console.log(req);
+	if (req.query.QQ === 123 && req.query.pas === pas) {
+		// 插入数据哭
+		res.send([{status: 'ok'}])
+	} else {
+		res.send([{status: 'err'}])
+	}
+	// res.send({
+	// 	status: 'ok'
+	// })
 });
-//挂载路由
-app.use("/user", a);

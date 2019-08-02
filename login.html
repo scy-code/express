@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="uname"><br>
+    <input type="text" id="upwd"><br>
+    <button onclick="show()">登录</button>
+        <script>
+        function show(){
+            var xhr=new XMLHttpRequest();
+            xhr.onreadystatechange=function(){
+                if (xhr.readyState==4&&xhr.status==200){
+                    var result=xhr.responseText;
+                    if (JSON.parse(result[0].status) === 'ok') {
+                        alert('登陆成功')
+                    } else {
+                        alert('失败，请重新试')
+                    }
+                }
+            }
+            xhr.open("get",'/login?QQ=123&pas=234',true);
+            xhr.send(null);
+        }
+       
+        </script>
+</body>
+</html>
